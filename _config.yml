@@ -5,7 +5,7 @@ title: Marybeth Kram
 description: >- # this means to ignore newlines until "baseurl:"
   Marybeth is an improv and comedy performer and writer in Chicago.
 baseurl: "/" # the subpath of the site
-url: "https://www.marybethkram.com" # the base hostname & protocol for the site
+url: "https://marybethkram.com" # the base hostname & protocol for the site
 og_image: /assets/img/marybeth.jpeg
 
 header:
