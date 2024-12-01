@@ -1,0 +1,50 @@
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+title: Marybeth Kram
+description: >- # this means to ignore newlines until "baseurl:"
+  Marybeth is an improv and comedy performer and writer in Chicago.
+baseurl: "/" # the subpath of the site
+url: "https://www.marybethkram.com" # the base hostname & protocol for the site
+og_image: /assets/img/marybeth.jpeg
+
+header:
+  pages:
+    - name: About
+      slug: /
+    - name: Blog
+    - name: Work
+
+footer:
+  show_powered_by: false
+  contact:
+    - type: email
+      name: Email
+      value: marybeth.kram@gmail.com
+  follow:
+    - type: rss
+      name: RSS
+      link: /feed.xml
+
+# Build settings
+markdown: kramdown
+sass:
+    style: :compressed
+plugins:
+  - jekyll-feed
+
+# Excluded items
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - feed.xml
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Used for defeating caching
+version: 1
