@@ -7,7 +7,7 @@ profile_picture:
 ---
 {{ site.description }}
 
-| Upcoming Shows | | |
-|---|---|---|
+| Upcoming Shows | |
+|---|---|
 | [Clued In](https://www.secondcity.com/shows/chicago/clued-in-chi/) | May 30th, June 6th & 7th |
 | [Hitch*Cocktails](https://theannoyance.thundertix.com/events/188394) | May 30th, June 6th |
