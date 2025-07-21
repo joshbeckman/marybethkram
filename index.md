@@ -9,5 +9,5 @@ profile_picture:
 
 | Upcoming Shows | |
 |---|---|
-| [Clued In](https://www.secondcity.com/shows/chicago/clued-in-chi/) | July 11th |
-| [Hitch*Cocktails](https://theannoyance.thundertix.com/events/188394) | July 12th, 18th, 19th |
+| [Clued In](https://www.secondcity.com/shows/chicago/clued-in-chi/) | August 9th, 22nd, 23rd |
+| [Hitch*Cocktails](https://theannoyance.thundertix.com/events/188394) | August 22nd |
