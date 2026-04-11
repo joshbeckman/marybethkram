@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'listMonth',
     events: {
-      url: `https://corsproxy.io/?url=${encodeURIComponent(iCalURL)}`,
+      url: `https://api.cors.lol/?url=${encodeURIComponent(iCalURL)}`,
       format: 'ics',
     },
     eventClick: function(info) {
