@@ -1,0 +1,55 @@
+name: Refresh upcoming shows
+
+on:
+  schedule:
+    # Hourly. On change, dispatches build.yml to redeploy Pages.
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: "refresh-events"
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Fetch iCal and write _data/events.yml
+        run: bundle exec ruby scripts/fetch-events.rb
+
+      - name: Commit changes if events.yml moved
+        id: commit
+        run: |
+          if [ -n "$(git status --porcelain _data/events.yml)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add _data/events.yml
+            git commit -m "chore: refresh upcoming shows"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No changes to events.yml"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # GITHUB_TOKEN-authored push commits do NOT retrigger the push-driven
+      # build.yml (GitHub blocks that to avoid recursion). workflow_dispatch
+      # is the documented exception, so we dispatch the deploy explicitly.
+      - name: Trigger Pages deploy
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run build.yml --ref main

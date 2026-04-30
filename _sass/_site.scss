@@ -1,3 +1,62 @@
+.show-list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.show {
+  display: flex;
+  gap: 20px;
+  padding: 14px 0;
+  border-top: 1px solid $grey-color-light;
+
+  &:last-child {
+    border-bottom: 1px solid $grey-color-light;
+  }
+
+  @include media-query($on-mobile) {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.show-when {
+  flex: 0 0 9em;
+  font-variant-numeric: tabular-nums;
+
+  // In column layout, flex-basis becomes height — drop it so the date/time
+  // block is only as tall as its content instead of leaving a 9em gap.
+  @include media-query($on-mobile) {
+    flex: 0 0 auto;
+  }
+}
+
+.show-date {
+  font-weight: bold;
+}
+
+.show-time {
+  color: $grey-color;
+  font-size: $small-font-size;
+}
+
+.show-title {
+  font-size: 1.05em;
+  font-weight: bold;
+}
+
+.show-location {
+  font-size: $small-font-size;
+  color: $grey-color-dark;
+  margin-top: 4px;
+}
+
+.show-description {
+  font-size: $small-font-size;
+  font-style: italic;
+  margin-top: 4px;
+}
+
 .profile-pic {
   float: right;
   width: 202px;

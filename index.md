@@ -11,57 +11,34 @@ profile_picture:
 
 Shows are listed about a month in advance.
 
-Click any event for details.
-
-<div id='calendar'></div>
-<script id="calendar-js" src='/assets/js/vendor/fullcalendar.index.global.min.js'></script>
-<script src="/assets/js/vendor/ical.min.js"></script>
-<script src="/assets/js/vendor/fullcalendar.icalendar.global.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var iCalURL = 'https://p57-caldav.icloud.com/published/2/MTM1OTE1NDM4NDEzNTkxNaX01E2vsgBXvJdLR2tCYdnBQr270iUB0EOJMVZDENhd7yA7Y6hr9WU4O5INm8o3z6VsjHUBf9vvzDKWqvIJzhc';
-  var calendarEl = document.getElementById('calendar');
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'listMonth',
-    events: {
-      url: `https://api.cors.lol/?url=${encodeURIComponent(iCalURL)}`,
-      format: 'ics',
-    },
-    eventClick: function(info) {
-      info.jsEvent.preventDefault();
-      if (info.event.url) {
-        window.open(info.event.url, '_blank');
-        return;
-      }
-      var details = info.event.title;
-      if (info.event.extendedProps.location) {
-        details += '\n\nLocation: ' + info.event.extendedProps.location;
-      }
-      if (info.event.extendedProps.description) {
-        details += '\n\nDescription: ' + info.event.extendedProps.description;
-      }
-      alert(details);
-    },
-    eventDidMount: function(info) {
-      if (info.event.extendedProps.location) {
-        var locationEl = document.createElement('div');
-        locationEl.className = 'fc-event-location';
-        locationEl.style.fontSize = '0.9em';
-        locationEl.style.opacity = '0.8';
-        locationEl.innerHTML = '📍 ' + info.event.extendedProps.location;
-        info.el.querySelector('.fc-list-event-title').appendChild(locationEl);
-      }
-      if (info.event.extendedProps.description) {
-        var descEl = document.createElement('div');
-        descEl.className = 'fc-event-description';
-        descEl.style.fontSize = '0.85em';
-        descEl.style.fontStyle = 'italic';
-        descEl.style.marginTop = '4px';
-        descEl.innerHTML = info.event.extendedProps.description;
-        info.el.querySelector('.fc-list-event-title').appendChild(descEl);
-      }
-    },
-  });
-  calendar.render();
-});
-</script>
+{% assign events = site.data.events %}
+{% if events and events.size > 0 %}
+<ul class="show-list">
+{% for event in events %}
+  {% assign start = event.start | date: "%s" | plus: 0 %}
+  {% assign date_label = event.start | date: "%a %b %-d, %Y" %}
+  {% assign time_label = event.start | date: "%-l:%M %p" %}
+  <li class="show">
+    <div class="show-when">
+      <div class="show-date">{{ date_label }}</div>
+      {% unless event.all_day %}<div class="show-time">{{ time_label }}</div>{% endunless %}
+    </div>
+    <div class="show-what">
+      {% if event.url and event.url != "" %}
+        <a class="show-title" href="{{ event.url }}" target="_blank" rel="noopener">{{ event.title }}</a>
+      {% else %}
+        <span class="show-title">{{ event.title }}</span>
+      {% endif %}
+      {% if event.location and event.location != "" %}
+        <div class="show-location">📍 {{ event.location | newline_to_br }}</div>
+      {% endif %}
+      {% if event.description and event.description != "" %}
+        <div class="show-description">{{ event.description | newline_to_br }}</div>
+      {% endif %}
+    </div>
+  </li>
+{% endfor %}
+</ul>
+{% else %}
+<p><em>No upcoming shows are on the calendar right now — check back soon.</em></p>
+{% endif %}

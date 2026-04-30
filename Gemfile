@@ -10,3 +10,6 @@ gem "jekyll"
 group :jekyll_plugins do
   gem "jekyll-feed"
 end
+
+# Used by scripts/fetch-events.rb to parse the published iCal feed at build time
+gem "icalendar"
