@@ -1,1 +1,10 @@
---- []
+---
+- title: Redacted (Road House)
+  start: '2026-07-27T19:30:00-05:00'
+  end: '2026-07-27T21:30:00-05:00'
+  all_day: false
+  location: |-
+    Gman Tavern
+    3740 N Clark St, Chicago, IL  60613, United States
+  description: ''
+  url: ''
