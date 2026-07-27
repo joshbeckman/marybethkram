@@ -8,3 +8,21 @@
     3740 N Clark St, Chicago, IL  60613, United States
   description: ''
   url: ''
+- title: Clued In
+  start: '2026-08-07T19:00:00-05:00'
+  end: '2026-08-07T20:00:00-05:00'
+  all_day: false
+  location: |-
+    Second City Training Center
+    1608 N Wells St, Chicago, IL  60614, United States
+  description: ''
+  url: https://www.secondcity.com/shows/chicago/clued-in-chi
+- title: Hitch*Cocktails
+  start: '2026-08-07T21:30:00-05:00'
+  end: '2026-08-07T23:00:00-05:00'
+  all_day: false
+  location: |-
+    The Annoyance Theatre and Bar
+    851 W Belmont Ave, Chicago, IL  60657, United States
+  description: ''
+  url: https://theannoyance.thundertix.com/orders/new?performance_id=3215324
